@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SwipePoll</string>
+    <string name="edit_message">Which one do you like?</string>
+    <string name="button_send">Create!</string>
+</resources>
