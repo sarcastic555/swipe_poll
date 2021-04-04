@@ -11,10 +11,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val spinnerItems = arrayOf(
-            "Spinner",
-            "Android",
-            "Apple",
-            "Windows"
+            "Select your question",
+            "Which one do you like?",
+            "Which one do you use more often?",
+            "Which one do you have?"
         )
         val adapter = ArrayAdapter(
             applicationContext,
@@ -25,14 +25,5 @@ class MainActivity : AppCompatActivity() {
 
         val spinner = findViewById<Spinner>(R.id.spinner3)
         spinner.adapter = adapter
-        //val adapter =
-        //ArrayAdapter<String>(this, R.layout.simple_spinner_item)
-        //adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        //adapter.add("A型")
-        //adapter.add("B型")
-        //adapter.add("AB型")
-        //adapter.add("O型")
-        //val spinner = findViewById<View>(R.id.spinner3) as Spinner
-        //spinner.adapter = adapter
     }
 }
