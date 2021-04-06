@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="sp_s">20sp</dimen>
+    <dimen name="sp_m">30sp</dimen>
+    <dimen name="sp_l">40sp</dimen>
+</resources>

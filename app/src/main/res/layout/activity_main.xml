@@ -64,8 +64,8 @@
 
     <Spinner
         android:id="@+id/spinner3"
-        android:layout_width="343dp"
-        android:layout_height="65dp"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

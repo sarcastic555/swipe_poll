@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         )
         val adapter = ArrayAdapter(
             applicationContext,
-            android.R.layout.simple_spinner_item,
+            R.layout.spinner_item,
             spinnerItems
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         val dimensions = listOf("TOYOTA", "NISSAN")//分割円の名称(String型)
         val values = listOf(4f, 1f)//分割円の大きさ(Float型)
         val bgcolors = listOf(Color.RED, Color.BLUE)
-        //val bgcolors = listOf(Color.rgb(192,0,0), Color.rgb(0,192,0))
         //①Entryにデータ格納
         var entryList = mutableListOf<PieEntry>()
         for(i in values.indices){
