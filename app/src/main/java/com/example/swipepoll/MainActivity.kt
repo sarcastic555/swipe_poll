@@ -1,21 +1,27 @@
 package com.example.swipepoll
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.Spinner
 import android.os.Handler
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import java.io.FileDescriptor
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
+    private val RESULT_PICK_IMAGEFILE = 1000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setScreenMain();
@@ -25,6 +31,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.GONE
+
+        // 画像アップロードボタン
+        val uploadButton = findViewById<Button>(R.id.button4)
+        uploadButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                 addCategory(Intent.CATEGORY_OPENABLE)
+                 type = "image/*"
+            }
+            startActivityForResult(intent, RESULT_PICK_IMAGEFILE)
+        }
 
         // Spinnerの設定
         val spinnerItems = arrayOf(
@@ -55,6 +71,33 @@ class MainActivity : AppCompatActivity() {
             val handler = Handler()
             handler.postDelayed(TextChangeRunnable(), 3000)
         };
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
+        if (requestCode == RESULT_PICK_IMAGEFILE && resultCode == Activity.RESULT_OK) {
+            //var uri: Uri
+            if (resultData != null) {
+                try {
+                    var uri: Uri? = resultData.data
+                    val bmp = getBitmapFromUri(uri)
+                    val imageView = findViewById<ImageView>(R.id.imageView);
+                    imageView.setImageBitmap(bmp)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun getBitmapFromUri(uri: Uri?): Bitmap? {
+        if (uri == null) return null
+        val parcelFileDescriptor =
+            contentResolver.openFileDescriptor(uri, "r")
+        val fileDescriptor: FileDescriptor = parcelFileDescriptor!!.fileDescriptor
+        val image = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+        parcelFileDescriptor.close()
+        return image
     }
 
     private fun setScreenSub() {
