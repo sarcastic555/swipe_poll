@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
         imageView2.setImageBitmap(bmp2)
 
         // Graph
-        val dimensions = listOf("TOYOTA", "NISSAN")//分割円の名称(String型)
+        val dimensions = listOf("80%", "20%")//分割円の名称(String型)
         val values = listOf(4f, 1f)//分割円の大きさ(Float型)
         val bgcolors = listOf(Color.RED, Color.BLUE)
         //①Entryにデータ格納
