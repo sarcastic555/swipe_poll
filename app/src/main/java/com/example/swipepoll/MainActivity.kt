@@ -21,6 +21,8 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
     private val RESULT_PICK_IMAGEFILE = 1000
+    private var bmp1: Bitmap? = null
+    private var bmp2: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,13 +89,14 @@ class MainActivity : AppCompatActivity() {
             if (resultData != null) {
                 try {
                     var uri: Uri? = resultData.data
-                    val bmp = getBitmapFromUri(uri)
                     if (requestCode == 1) {
+                        bmp1 = getBitmapFromUri(uri)
                         val imageView = findViewById<ImageView>(R.id.imageView);
-                        imageView.setImageBitmap(bmp)
+                        imageView.setImageBitmap(bmp1)
                     } else if (requestCode == 2) {
+                        bmp2 = getBitmapFromUri(uri)
                         val imageView = findViewById<ImageView>(R.id.imageView2);
-                        imageView.setImageBitmap(bmp)
+                        imageView.setImageBitmap(bmp2)
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -131,6 +134,12 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val spinner = findViewById<Spinner>(R.id.spinner3)
         spinner.adapter = adapter
+
+        // 画像の設定
+        val imageView1 = findViewById<ImageView>(R.id.imageView);
+        imageView1.setImageBitmap(bmp1)
+        val imageView2 = findViewById<ImageView>(R.id.imageView2);
+        imageView2.setImageBitmap(bmp2)
 
         // Graph
         val dimensions = listOf("TOYOTA", "NISSAN")//分割円の名称(String型)
