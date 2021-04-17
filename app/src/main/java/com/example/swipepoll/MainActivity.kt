@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.GONE
+        var progressText = findViewById<TextView>(R.id.textView)
+        progressText.visibility = View.GONE
 
         // 画像アップロードボタン
         val uploadButton1 = findViewById<Button>(R.id.button4)
@@ -78,8 +80,9 @@ class MainActivity : AppCompatActivity() {
         val createButton = findViewById<Button>(R.id.button3);
         createButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
+            progressText.visibility = View.VISIBLE
             val handler = Handler()
-            handler.postDelayed(TextChangeRunnable(), 3000)
+            handler.postDelayed(TextChangeRunnable(), 5000)
         };
     }
 
