@@ -33,13 +33,21 @@ class MainActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
 
         // 画像アップロードボタン
-        val uploadButton = findViewById<Button>(R.id.button4)
-        uploadButton.setOnClickListener {
+        val uploadButton1 = findViewById<Button>(R.id.button4)
+        uploadButton1.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                 addCategory(Intent.CATEGORY_OPENABLE)
-                 type = "image/*"
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
             }
-            startActivityForResult(intent, RESULT_PICK_IMAGEFILE)
+            startActivityForResult(intent, 1)
+        }
+        val uploadButton2 = findViewById<Button>(R.id.button5)
+        uploadButton2.setOnClickListener {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
+            }
+            startActivityForResult(intent, 2)
         }
 
         // Spinnerの設定
@@ -74,14 +82,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
-        if (requestCode == RESULT_PICK_IMAGEFILE && resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             //var uri: Uri
             if (resultData != null) {
                 try {
                     var uri: Uri? = resultData.data
                     val bmp = getBitmapFromUri(uri)
-                    val imageView = findViewById<ImageView>(R.id.imageView);
-                    imageView.setImageBitmap(bmp)
+                    if (requestCode == 1) {
+                        val imageView = findViewById<ImageView>(R.id.imageView);
+                        imageView.setImageBitmap(bmp)
+                    } else if (requestCode == 2) {
+                        val imageView = findViewById<ImageView>(R.id.imageView2);
+                        imageView.setImageBitmap(bmp)
+                    }
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
