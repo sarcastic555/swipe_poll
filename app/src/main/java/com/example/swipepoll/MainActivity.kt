@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import kotlin.random.Random
 import java.io.FileDescriptor
 import java.io.IOException
 
@@ -95,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             progressBar.visibility = View.VISIBLE
             progressText.visibility = View.VISIBLE
             val handler = Handler()
-            handler.postDelayed(TextChangeRunnable(), 5000)
+            handler.postDelayed(TextChangeRunnable(), 15000)
         };
     }
 
@@ -145,9 +147,27 @@ class MainActivity : AppCompatActivity() {
         val imageView2 = findViewById<ImageView>(R.id.imageView2);
         imageView2.setImageBitmap(bmp2)
 
+        // 投票数を設定
+        val pollnumTotal = Random.nextInt(10, 20)
+        val pollText = findViewById<TextView>(R.id.textView2);
+        pollText.setText("投票数 %d".format(pollnumTotal))
+
+        // 投票割合を確定
+        val pollnumA = Random.nextInt(pollnumTotal+1)
+        val pollnumB = pollnumTotal - pollnumA
+        Log.d("test", "%d".format(pollnumA));
+        val pollratioA = pollnumA * 100.0 / pollnumTotal
+        val pollratioB = pollnumB * 100.0 / pollnumTotal
+        //val displayA = "%f".format(pollratioA)
+        //val displayB = "%f".format(pollratioB)
+        val displayA = "%d".format(pollnumA)
+        val displayB = "%d".format(pollnumB)
+        Log.d("test", "%d".format(pollnumA));
+        Log.d("test", "%d".format(pollnumB));
+
         // Graph
-        val dimensions = listOf("80%", "20%")//分割円の名称(String型)
-        val values = listOf(4f, 1f)//分割円の大きさ(Float型)
+        val dimensions = listOf(displayA, displayB)//分割円の名称(String型)
+        val values = listOf(pollnumA.toFloat(), pollnumB.toFloat())//分割円の大きさ(Float型)
         val bgcolors = listOf(Color.RED, Color.BLUE)
         //①Entryにデータ格納
         var entryList = mutableListOf<PieEntry>()
