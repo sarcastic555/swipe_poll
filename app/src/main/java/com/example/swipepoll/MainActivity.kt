@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val RESULT_PICK_IMAGEFILE = 1000
     private var bmp1: Bitmap? = null
     private var bmp2: Bitmap? = null
+    private var spinnerText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         // Spinnerの設定
         val spinnerItems = arrayOf(
-            "Select your question",
-            "Which one do you like?",
-            "Which one do you use more often?",
-            "Which one do you have?"
+            "どちらが好き？",
+            "どちらをよく使う？"
         )
         val adapter = ArrayAdapter(
             applicationContext,
@@ -70,6 +70,19 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val spinner = findViewById<Spinner>(R.id.spinner3)
         spinner.adapter = adapter
+        spinnerText = spinner.getSelectedItem().toString();
+        spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                spinnerText = spinner.getSelectedItem().toString();
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
 
         class TextChangeRunnable() : Runnable {
             override fun run() {
@@ -121,22 +134,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setScreenSub() {
         setContentView(R.layout.activity_sub)
-        // Spinnerの設定
-        val spinnerItems = arrayOf(
-            "Select your question",
-            "Which one do you like?",
-            "Which one do you use more often?",
-            "Which one do you have?"
-        )
-        val adapter = ArrayAdapter(
-            applicationContext,
-            R.layout.spinner_item,
-            spinnerItems
-        )
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        val spinner = findViewById<Spinner>(R.id.spinner3)
-        spinner.adapter = adapter
+        // 選択肢の文字を表示
+        val questionText = findViewById<TextView>(R.id.textView3)
+        questionText.setText(spinnerText)
 
         // 画像の設定
         val imageView1 = findViewById<ImageView>(R.id.imageView);
