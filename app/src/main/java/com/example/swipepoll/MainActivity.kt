@@ -155,15 +155,10 @@ class MainActivity : AppCompatActivity() {
         // 投票割合を確定
         val pollnumA = Random.nextInt(pollnumTotal+1)
         val pollnumB = pollnumTotal - pollnumA
-        Log.d("test", "%d".format(pollnumA));
-        val pollratioA = pollnumA * 100.0 / pollnumTotal
-        val pollratioB = pollnumB * 100.0 / pollnumTotal
-        //val displayA = "%f".format(pollratioA)
-        //val displayB = "%f".format(pollratioB)
-        val displayA = "%d".format(pollnumA)
-        val displayB = "%d".format(pollnumB)
-        Log.d("test", "%d".format(pollnumA));
-        Log.d("test", "%d".format(pollnumB));
+        val pollratioA = (pollnumA * 100.0 / pollnumTotal).toInt()
+        val pollratioB = 100 - pollratioA
+        val displayA = "%d%%".format(pollratioA)
+        val displayB = "%d%%".format(pollratioB)
 
         // Graph
         val dimensions = listOf(displayA, displayB)//分割円の名称(String型)
