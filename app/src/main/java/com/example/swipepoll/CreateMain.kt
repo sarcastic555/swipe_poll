@@ -22,7 +22,7 @@ import java.io.FileDescriptor
 import java.io.IOException
 
 
-class MainActivity : AppCompatActivity() {
+class CreateMain : AppCompatActivity() {
     private val RESULT_PICK_IMAGEFILE = 1000
     private var bmp1: Bitmap? = null
     private var bmp2: Bitmap? = null
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setScreenMain() {
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.create_main)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.GONE
         var progressText = findViewById<TextView>(R.id.textView)
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setScreenSub() {
-        setContentView(R.layout.activity_sub)
+        setContentView(R.layout.create_result)
 
         // 選択肢の文字を表示
         val questionText = findViewById<TextView>(R.id.textView3)
