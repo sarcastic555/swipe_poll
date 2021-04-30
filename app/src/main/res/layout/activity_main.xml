@@ -80,7 +80,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Polling"
+        android:text="投票を受付中"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
