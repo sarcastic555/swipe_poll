@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private var bmp1: Bitmap? = null
     private var bmp2: Bitmap? = null
     private var spinnerText: String? = null
+    var setImage1 = false
+    var setImage2 = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,10 +96,12 @@ class MainActivity : AppCompatActivity() {
 
         val createButton = findViewById<Button>(R.id.button3);
         createButton.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
-            progressText.visibility = View.VISIBLE
-            val handler = Handler()
-            handler.postDelayed(TextChangeRunnable(), 15000)
+            if (setImage1 && setImage2) {
+                progressBar.visibility = View.VISIBLE
+                progressText.visibility = View.VISIBLE
+                val handler = Handler()
+                handler.postDelayed(TextChangeRunnable(), 15000)
+            }
         };
     }
 
@@ -111,10 +115,12 @@ class MainActivity : AppCompatActivity() {
                         bmp1 = getBitmapFromUri(uri)
                         val imageView = findViewById<ImageView>(R.id.imageView);
                         imageView.setImageBitmap(bmp1)
+                        setImage1 = true
                     } else if (requestCode == 2) {
                         bmp2 = getBitmapFromUri(uri)
                         val imageView = findViewById<ImageView>(R.id.imageView2);
                         imageView.setImageBitmap(bmp2)
+                        setImage2 = true
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -188,6 +194,10 @@ class MainActivity : AppCompatActivity() {
         pieChart.invalidate()
 
         val createButton = findViewById<Button>(R.id.button3);
-        createButton.setOnClickListener {setScreenMain()};
+        createButton.setOnClickListener {
+            setImage1 = false
+            setImage2 = true
+            setScreenMain()
+        };
     }
 }
