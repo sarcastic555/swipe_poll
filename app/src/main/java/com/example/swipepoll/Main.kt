@@ -1,8 +1,13 @@
 package com.example.swipepoll
 
 import android.os.Bundle
-import android.widget.Toast
+import android.content.Intent
+import android.widget.ProgressBar
+import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import com.example.swipepoll.fragments.FavoriteFragment
+import com.example.swipepoll.fragments.HomeFragment
+import com.example.swipepoll.fragments.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class Main : AppCompatActivity() {
@@ -11,26 +16,19 @@ class Main : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.main)
 
-    // TabLayoutの取得
-    val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
+    setUpTabs()
+  }
 
-    // OnTabSelectedListenerの実装
-    tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+  private fun setUpTabs() {
+    val adapter = ViewPagerAdapter(supportFragmentManager)
+    adapter.addFragment(HomeFragment(), "Home")
+    adapter.addFragment(FavoriteFragment(), "Favorite")
 
-      // タブが選択された際に呼ばれる
-      override fun onTabSelected(tab: TabLayout.Tab) {
-        Toast.makeText(this@Main, tab.text, Toast.LENGTH_SHORT).show()
-      }
-
-      // タブが未選択になった際に呼ばれる
-      override fun onTabUnselected(tab: TabLayout.Tab) {
-
-      }
-
-      // 同じタブが選択された際に呼ばれる
-      override fun onTabReselected(tab: TabLayout.Tab) {
-
-      }
-    })
+    val viewPager = findViewById<ViewPager>(R.id.viewPager)
+    viewPager.adapter = adapter
+    val tabs = findViewById<TabLayout>(R.id.tabs)
+    tabs.setupWithViewPager(viewPager)
+    tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_home_24)
+    tabs.getTabAt(1)!!.setIcon(R.drawable.icon_car)
   }
 }
