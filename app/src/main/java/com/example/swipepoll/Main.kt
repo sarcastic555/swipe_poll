@@ -1,6 +1,9 @@
 package com.example.swipepoll
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swipepoll.fragments.PollFragment
@@ -15,11 +18,12 @@ class Main : AppCompatActivity() {
     setContentView(R.layout.main)
 
     setUpTabs()
+
   }
 
   private fun setUpTabs() {
     val adapter = ViewPagerAdapter(supportFragmentManager)
-    adapter.addFragment(CreateFragment(), "Create")
+    adapter.addFragment(CreateFragment(applicationContext), "Create")
     adapter.addFragment(PollFragment(), "Poll")
 
     val viewPager = findViewById<ViewPager>(R.id.viewPager)
