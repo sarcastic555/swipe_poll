@@ -36,7 +36,7 @@ class CreateMain : AppCompatActivity() {
     }
 
     private fun setScreenMain() {
-        setContentView(R.layout.create_main)
+        setContentView(R.layout.fragment_create)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.GONE
         var progressText = findViewById<TextView>(R.id.textView)
