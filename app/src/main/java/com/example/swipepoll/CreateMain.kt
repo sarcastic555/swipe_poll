@@ -42,6 +42,7 @@ class CreateMain : AppCompatActivity() {
         var progressText = findViewById<TextView>(R.id.textView)
         progressText.visibility = View.GONE
 
+
         // 画像アップロードボタン
         val uploadButton1 = findViewById<Button>(R.id.button4)
         uploadButton1.setOnClickListener {
