@@ -87,6 +87,7 @@ class ResultFragment : Fragment() {
         backButton.setOnClickListener {
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragmentCreate, CreateFragmentEntry())
+            transaction?.replace(R.id.fragmentPoll, PollFragmentEntry())
             transaction?.commit()
         }
 
