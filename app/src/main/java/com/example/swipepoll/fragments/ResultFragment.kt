@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.example.swipepoll.R
@@ -80,6 +81,14 @@ class ResultFragment : Fragment() {
         pieChart.setEntryLabelTextSize(20f)
         //⑦PieChart更新
         pieChart.invalidate()
+
+        // 戻るボタン
+        val backButton = view.findViewById<Button>(R.id.button3)
+        backButton.setOnClickListener {
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragmentCreate, CreateFragmentEntry())
+            transaction?.commit()
+        }
 
         return view
     }
