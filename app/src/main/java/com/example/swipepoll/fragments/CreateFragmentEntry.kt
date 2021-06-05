@@ -2,20 +2,21 @@ package com.example.swipepoll.fragments
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.swipepoll.R
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Bundle
 import android.os.Handler
-import android.widget.*
-import com.google.android.material.internal.ContextUtils
-import com.google.android.material.internal.ContextUtils.getActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.swipepoll.R
+import java.io.ByteArrayOutputStream
 import java.io.FileDescriptor
 import java.io.IOException
 
@@ -50,10 +51,17 @@ class CreateFragmentEntry : Fragment() {
             if (setImage1 && setImage2) {
                 progressBar.visibility = View.VISIBLE
                 progressText.visibility = View.VISIBLE
+                // Feed image via bundle object
+                val bundle = Bundle()
+                bundle.putParcelable("image1", bmp1)
+                bundle.putParcelable("image2", bmp2)
+                bundle.putString("question", "どっちが好きですか？")
                 val handler = Handler()
+                val resultFragment = ResultFragment()
+                resultFragment.arguments = bundle
                 handler.postDelayed({
                     val transaction = fragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.fragmentCreate, ResultFragment())
+                    transaction?.replace(R.id.fragmentCreate, resultFragment)
                     transaction?.commit()
                 }, 3000)
             }
