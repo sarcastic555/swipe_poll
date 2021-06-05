@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.swipepoll.R
 import android.content.Context
+import android.os.Handler
 import android.widget.*
 import com.google.android.material.internal.ContextUtils.getActivity
 
@@ -34,9 +35,13 @@ class CreateFragmentEntry : Fragment() {
         val createButton = view.findViewById<Button>(R.id.button3)
         createButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            val transaction = fragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragmentCreate, ResultFragment())
-            transaction?.commit()
+            progressText.visibility = View.VISIBLE
+            val handler = Handler()
+            handler.postDelayed({
+                val transaction = fragmentManager?.beginTransaction()
+                transaction?.replace(R.id.fragmentCreate, ResultFragment())
+                transaction?.commit()
+            }, 3000)
         }
 
         // 画像アップロードボタン
