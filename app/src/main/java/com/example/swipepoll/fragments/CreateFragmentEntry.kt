@@ -10,10 +10,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.swipepoll.R
 import java.io.ByteArrayOutputStream
@@ -27,6 +24,7 @@ class CreateFragmentEntry : Fragment() {
     private var view_: View? = null
     private var setImage1 = false
     private var setImage2 = false
+    private var spinnerText: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -55,7 +53,7 @@ class CreateFragmentEntry : Fragment() {
                 val bundle = Bundle()
                 bundle.putParcelable("image1", bmp1)
                 bundle.putParcelable("image2", bmp2)
-                bundle.putString("question", "どっちが好きですか？")
+                bundle.putString("question", spinnerText)
                 val handler = Handler()
                 val resultFragment = ResultFragment()
                 resultFragment.arguments = bundle
@@ -83,6 +81,40 @@ class CreateFragmentEntry : Fragment() {
                 type = "image/*"
             }
             startActivityForResult(intent, 2)
+        }
+
+        // Spinnerの設定
+        val spinnerItems = arrayOf(
+            "どちらが好き？",
+            "どちらをよく使う？",
+            "どっちが似合う",
+            "どっちが食べたい",
+            "かっこいい",
+            "どっちがかわいい"
+        )
+        val activity = getActivity()
+        if (activity != null) {
+            val adapter = ArrayAdapter(
+                activity.applicationContext,
+                R.layout.spinner_item,
+                spinnerItems
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val spinner = view.findViewById<Spinner>(R.id.spinner3)
+            spinner.adapter = adapter
+            spinnerText = spinner.getSelectedItem().toString();
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    spinnerText = spinner.getSelectedItem().toString();
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
         }
         return view
     }
@@ -122,35 +154,5 @@ class CreateFragmentEntry : Fragment() {
             }
         }
     }
-
-
-//        // Spinnerの設定
-//        val spinnerItems = arrayOf(
-//            "どちらが好き？",
-//            "どちらをよく使う？"
-//        )
-//        val adapter = ArrayAdapter(
-//            this.mycontext,
-//            R.layout.spinner_item,
-//            spinnerItems
-//        )
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        val spinner = view.findViewById<Spinner>(R.id.spinner3)
-//        spinner.adapter = adapter
-//        spinnerText = spinner.getSelectedItem().toString();
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(
-//                parent: AdapterView<*>,
-//                view: View,
-//                position: Int,
-//                id: Long
-//            ) {
-//                spinnerText = spinner.getSelectedItem().toString();
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {}
-//        }
-
-
 
 }
