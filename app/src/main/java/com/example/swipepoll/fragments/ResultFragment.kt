@@ -63,8 +63,8 @@ class ResultFragment : Fragment() {
         val pollText = view.findViewById<TextView>(R.id.textView2);
         pollText.setText("投票数 %d".format(pollnumTotal))
 
-        // 投票割合を確定
-        val pollnumA = Random.nextInt(pollnumTotal+1)
+        // 投票割合を確定 (最低2票ずつを確保)
+        val pollnumA = Random.nextInt(pollnumTotal-1) + 2
         val pollnumB = pollnumTotal - pollnumA
         val pollratioA = (pollnumA * 100.0 / pollnumTotal).toInt()
         val pollratioB = 100 - pollratioA
