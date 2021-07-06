@@ -30,7 +30,22 @@ class ListFragmentEntry : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list_entry, container, false)
 
+        // ListViewのテスト (see p151)
+        val listView = view.findViewById<ListView>(R.id.listTest)
+        val menuList: MutableList<MutableMap<String, String> > = mutableListOf()
+        var menu = mutableMapOf("name" to "からあげ", "price" to "880円")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "ハンバーグ定食", "price" to "850円")
+        menuList.add(menu)
+        val from = arrayOf("name", "price")
+        val to = intArrayOf(android.R.id.text1, android.R.id.text2)
+        // ImageViewとTextViewをもつレイアウトファイルを作成し、ここのsimple_list_item_2の部分を置き換えればいいはず
+        val adapter = SimpleAdapter(getActivity()?.applicationContext, menuList, android.R.layout.simple_list_item_2, from, to)
+        listView.adapter = adapter
+
         return view
     }
+
+
 
 }
