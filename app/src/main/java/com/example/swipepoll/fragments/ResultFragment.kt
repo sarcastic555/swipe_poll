@@ -104,6 +104,7 @@ class ResultFragment : Fragment() {
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragmentCreate, CreateFragmentEntry())
             transaction?.replace(R.id.fragmentPoll, PollFragmentEntry())
+            transaction?.replace(R.id.fragmentList, ListFragmentEntry())
             transaction?.commit()
         }
 
