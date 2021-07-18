@@ -78,6 +78,7 @@ class PollFragmentEntry : Fragment() {
             this.resources,
             drawable2
         )
+
         image1.setImageBitmap(bmp1)
         image2.setImageBitmap(bmp2)
 
