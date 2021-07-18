@@ -100,13 +100,18 @@ class ListFragmentEntry : Fragment() {
                 )
              */
 
+            val item = parent.getItemAtPosition(position) as MutableMap <String, Any>
+
+            val picture1: Int = item["image1"] as Int
+            val picture2: Int = item["image2"] as Int
+
             val bmp1 = BitmapFactory.decodeResource(
                 this.resources,
-                R.drawable.book
+                picture1
             )
             val bmp2 = BitmapFactory.decodeResource(
                 this.resources,
-                R.drawable.cat
+                picture2
             )
 
 
@@ -122,8 +127,6 @@ class ListFragmentEntry : Fragment() {
             transaction?.replace(R.id.fragmentList, resultFragment)
             transaction?.commit()
         }
-
-
 
         return view
     }
