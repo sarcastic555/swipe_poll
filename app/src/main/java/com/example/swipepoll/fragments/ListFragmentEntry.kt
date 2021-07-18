@@ -119,6 +119,7 @@ class ListFragmentEntry : Fragment() {
             bundle.putParcelable("image1", bmp1)
             bundle.putParcelable("image2", bmp2)
             bundle.putString("question", "Test")
+            bundle.putString("origin", "list")
 
             val resultFragment = ResultFragment()
             resultFragment.arguments = bundle

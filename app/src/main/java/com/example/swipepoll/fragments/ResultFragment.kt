@@ -58,6 +58,9 @@ class ResultFragment : Fragment() {
             image2.setImageBitmap(bmp2)
         }
 
+        // 元の画面が何のページであったかの情報を取得
+        val origin_page = extras?.getString("origin") as String
+
         // 投票数を設定
         val pollnumTotal = Random.nextInt(10, 20)
         val pollText = view.findViewById<TextView>(R.id.textView2);
@@ -102,9 +105,13 @@ class ResultFragment : Fragment() {
         val backButton = view.findViewById<Button>(R.id.button3)
         backButton.setOnClickListener {
             val transaction = fragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragmentCreate, CreateFragmentEntry())
-            transaction?.replace(R.id.fragmentPoll, PollFragmentEntry())
-            transaction?.replace(R.id.fragmentList, ListFragmentEntry())
+            if (origin_page == "create") {
+                transaction?.replace(R.id.fragmentCreate, CreateFragmentEntry())
+            } else if (origin_page == "poll") {
+                transaction?.replace(R.id.fragmentPoll, PollFragmentEntry())
+            } else if (origin_page == "list") {
+                transaction?.replace(R.id.fragmentList, ListFragmentEntry())
+            }
             transaction?.commit()
         }
 
