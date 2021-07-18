@@ -85,6 +85,7 @@ class PollFragmentEntry : Fragment() {
         val bundle = Bundle()
         bundle.putParcelable("image1", bmp1)
         bundle.putParcelable("image2", bmp2)
+        bundle.putString("origin", "poll")
 
         val resultFragment = ResultFragment()
         resultFragment.arguments = bundle
