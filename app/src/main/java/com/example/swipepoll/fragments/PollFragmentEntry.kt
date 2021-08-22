@@ -22,7 +22,7 @@ class PollFragmentEntry : Fragment() {
     }
 
     private fun generateDrawables() : Pair<Int, Int> {
-        val rand = Random.nextInt(10)
+        val rand = Random.nextInt(24)
         var drawable1 = R.drawable.toyota
         var drawable2: Int = R.drawable.nissan
         if (rand == 0) {
@@ -55,6 +55,66 @@ class PollFragmentEntry : Fragment() {
         } else if (rand == 9) {
             drawable1 = R.drawable.dog
             drawable2 = R.drawable.cat
+        }
+        else if (rand == 10) {
+            drawable1 = R.drawable.adidas
+            drawable2 = R.drawable.nike
+        }
+        else if (rand == 11) {
+            drawable1 = R.drawable.pepsi
+            drawable2 = R.drawable.cocacola
+        }
+        else if (rand == 12) {
+            drawable1 = R.drawable.bmw
+            drawable2 = R.drawable.benz
+        }
+        else if (rand == 13) {
+            drawable1 = R.drawable.chanel
+            drawable2 = R.drawable.vuitton
+        }
+        else if (rand == 14) {
+            drawable1 = R.drawable.bread
+            drawable2 = R.drawable.rice
+        }
+        else if (rand == 15) {
+            drawable1 = R.drawable.souna
+            drawable2 = R.drawable.massage
+        }
+        else if (rand == 16) {
+            drawable1 = R.drawable.redwine
+            drawable2 = R.drawable.whitewine
+        }
+        else if (rand == 17) {
+            drawable1 = R.drawable.soba
+            drawable2 = R.drawable.udon
+        }
+        else if (rand == 18) {
+            drawable1 = R.drawable.tealeaf
+            drawable2 = R.drawable.teapet
+        }
+        else if (rand == 19) {
+            drawable1 = R.drawable.tomato
+            drawable2 = R.drawable.mayo
+        }
+        else if (rand == 20) {
+            drawable1 = R.drawable.nike
+            drawable2 = R.drawable.adidas
+        }
+        else if (rand == 21) {
+            drawable1 = R.drawable.mac
+            drawable2 = R.drawable.mos
+        }
+        else if (rand == 22) {
+            drawable1 = R.drawable.konan
+            drawable2 = R.drawable.kid
+        }
+        else if (rand == 23) {
+            drawable1 = R.drawable.redkitsune
+            drawable2 = R.drawable.greenrascal
+        }
+        else if (rand == 24) {
+            drawable1 = R.drawable.ooron
+            drawable2 = R.drawable.greentea
         }
         return Pair(drawable1, drawable2)
     }

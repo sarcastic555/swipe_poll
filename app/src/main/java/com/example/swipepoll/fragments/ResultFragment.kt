@@ -62,7 +62,7 @@ class ResultFragment : Fragment() {
         val origin_page = extras?.getString("origin") as String
 
         // 投票数を設定
-        val pollnumTotal = Random.nextInt(10, 20)
+        val pollnumTotal = Random.nextInt(10, 30)
         val pollText = view.findViewById<TextView>(R.id.textView2);
         pollText.setText("投票数 %d".format(pollnumTotal))
 
