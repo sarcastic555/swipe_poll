@@ -54,6 +54,7 @@ class CreateFragmentEntry : Fragment() {
                 bundle.putParcelable("image1", bmp1)
                 bundle.putParcelable("image2", bmp2)
                 bundle.putString("question", spinnerText)
+                bundle.putString("origin", "create")
                 val handler = Handler()
                 val resultFragment = ResultFragment()
                 resultFragment.arguments = bundle
