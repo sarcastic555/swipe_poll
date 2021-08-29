@@ -88,10 +88,10 @@ class CreateFragmentEntry : Fragment() {
         val spinnerItems = arrayOf(
             "どちらが好き？",
             "どちらをよく使う？",
-            "どっちが似合う",
-            "どっちが食べたい",
-            "かっこいい",
-            "どっちがかわいい"
+            "どっちが似合う？",
+            "どっちが食べたい？",
+            "かっこいい？",
+            "どっちがかわいい？"
         )
         val activity = getActivity()
         if (activity != null) {
