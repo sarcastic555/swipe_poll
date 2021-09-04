@@ -2,5 +2,7 @@
     <string name="app_name">SwipePoll</string>
     <string name="edit_message">Which one do you like?</string>
     <string name="button_send">Create!</string>
-    <string name="button_back">Back</string>>
+    <string name="button_back">Back</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>>
 </resources>
