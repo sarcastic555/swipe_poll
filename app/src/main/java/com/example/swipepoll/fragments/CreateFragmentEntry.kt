@@ -62,7 +62,7 @@ class CreateFragmentEntry : Fragment() {
                     val transaction = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.fragmentCreate, resultFragment)
                     transaction?.commit()
-                }, 3000)
+                }, 15000)
             }
         }
 
